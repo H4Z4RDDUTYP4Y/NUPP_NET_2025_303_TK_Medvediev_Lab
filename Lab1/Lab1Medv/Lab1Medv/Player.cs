@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Guitar.Common
 {
-    internal class Player
+    public class Player
     {
         public Guid Id { get; set; }
         public int Age { get; set; }
@@ -14,9 +14,9 @@ namespace Guitar.Common
         public int YearsExperience { get; set; }
         public Player(string name, int age, int yearsexperience)
         {
-            name = Name;
-            age = Age;
-            yearsexperience = YearsExperience;
+            Name = name; 
+            Age = age;   
+            YearsExperience = yearsexperience; 
         }
     }
 }

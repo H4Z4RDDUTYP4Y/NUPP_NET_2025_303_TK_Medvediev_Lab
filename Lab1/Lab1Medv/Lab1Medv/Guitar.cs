@@ -15,14 +15,14 @@ namespace Guitar.Common
         public float Price { get; set; }
         public Guitar(string name, int stringcount, int scalelength, float price)
         {
-            name = Name;
-            stringcount = StringCount;
-            scalelength = ScaleLength;
-            price = Price;
+            Name = name;
+            StringCount = stringcount;
+            ScaleLength = scalelength;
+            Price = price;
         }
 
         public abstract string GetInstrumentDetails();
 
-        public abstract void Strum();
+        public abstract void Strum(Player player);
     }
 }

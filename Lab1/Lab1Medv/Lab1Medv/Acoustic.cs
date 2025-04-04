@@ -14,16 +14,16 @@ namespace Guitar.Common
         public StringType StringType { get; set; }
         public Acoustic(string name, int stringcount, int scalelength, float price, bool haspiezo, StringType stringType) : base(name, stringcount, scalelength, price)
         {
-            name = Name;
-            stringcount = StringCount;
-            scalelength = ScaleLength;
-            haspiezo = HasPiezo;
-            stringType = StringType;
-            price = Price;
+            HasPiezo = haspiezo;
+            StringType = stringType;
         }
         public override string GetInstrumentDetails()
         {
             return $"Acoustic guitar - : {Name},{StringCount} string,{ScaleLength} inch scale length, {StringType} strings, piezo pickup: {HasPiezo} priced at {Price} USD";
+        }
+        public override void Strum(Player player)
+        {
+            Console.WriteLine($"{player.Name} strums the {Name} guitar!");
         }
     }
     enum StringType { Steel, Nylon}
