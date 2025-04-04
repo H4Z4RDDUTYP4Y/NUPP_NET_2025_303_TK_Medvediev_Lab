@@ -9,6 +9,8 @@ namespace Guitar.Common
 {
     internal class Electric : Guitar
     {
+        public int PickupCount { get; set; }
+        public VibratoSystem VibratoSystem { get; set; }
         public Electric(string name, int stringcount, int scalelength, float price, int pickupcount, VibratoSystem vibratoSystem) : base(name, stringcount, scalelength, price)
         {
             name = Name;
@@ -18,10 +20,10 @@ namespace Guitar.Common
             vibratoSystem = VibratoSystem;
             price = Price;
         }
-
-        public int PickupCount { get; set; }
-        public VibratoSystem VibratoSystem { get; set; }
-    
+        public override string GetInstrumentDetails()
+        {
+            return $"Electric guitar - : {Name},{StringCount} string,{ScaleLength} inch scale length, vibrato system on board - {VibratoSystem}, priced at {Price} USD";
+        }
 
     }
     enum VibratoSystem { None, FloatingBridge, LockedBridge, Bigsby }

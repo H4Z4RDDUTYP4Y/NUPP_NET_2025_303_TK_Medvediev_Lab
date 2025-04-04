@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Guitar.Common
 {
-    public class Guitar
+    public abstract class Guitar
     {
         public Guid Id { get; set; }
         public int ScaleLength { get; set; }
@@ -20,5 +20,9 @@ namespace Guitar.Common
             scalelength = ScaleLength;
             price = Price;
         }
+
+        public abstract string GetInstrumentDetails();
+
+        public abstract void Strum();
     }
 }
