@@ -35,10 +35,13 @@ namespace GuitarApp
             // Display instrument details
             Console.WriteLine(electricGuitar.GetInstrumentDetails());
             Console.WriteLine(acousticGuitar.GetInstrumentDetails());
+            // Call the delegate thingy
+            player.PlayPlayerIntro();
 
             // Call Strum method on both guitars
             electricGuitar.Strum(player);
             acousticGuitar.Strum(player);
+            
 
             // Keep the console window open
             Console.ReadLine();
