@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Guitar.Common
 {
-    public abstract class Guitar
+    public abstract class Guitar : IEntity
     {
         public Guid Id { get; set; }
         public int ScaleLength { get; set; }
