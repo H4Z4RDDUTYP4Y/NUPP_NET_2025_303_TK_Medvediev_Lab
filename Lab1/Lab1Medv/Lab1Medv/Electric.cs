@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace Guitar.Common
 {
-    internal class Electric : Guitar
+    public class Electric : Guitar
     {
+        public static Guid id;
+
         public int PickupCount { get; set; }
         public VibratoSystem VibratoSystem { get; set; }
-        public Electric(string name, int stringcount, int scalelength, float price, int pickupcount, VibratoSystem vibratoSystem) : base(name, stringcount, scalelength, price)
+        public Electric(Guid Id, string name, int stringcount, int scalelength, float price, int pickupcount, VibratoSystem vibratoSystem) : base(id, name, stringcount, scalelength, price)
         {
+            
             PickupCount = pickupcount;
             VibratoSystem = vibratoSystem;
         }
@@ -27,6 +30,6 @@ namespace Guitar.Common
         }
 
     }
-    enum VibratoSystem { None, FloatingBridge, LockedBridge, Bigsby }
+    public enum VibratoSystem { None, FloatingBridge, LockedBridge, Bigsby }
    
 }

@@ -8,12 +8,15 @@ using System.Xml.Linq;
 
 namespace Guitar.Common
 {
-    internal class Acoustic : Guitar
+    public class Acoustic : Guitar
     {
+        public static Guid id;
+
         public bool HasPiezo { get; set; }
         public StringType StringType { get; set; }
-        public Acoustic(string name, int stringcount, int scalelength, float price, bool haspiezo, StringType stringType) : base(name, stringcount, scalelength, price)
+        public Acoustic(Guid Id, string name, int stringcount, int scalelength, float price, bool haspiezo, StringType stringType) : base(id, name, stringcount, scalelength, price)
         {
+            
             HasPiezo = haspiezo;
             StringType = stringType;
         }
@@ -26,5 +29,5 @@ namespace Guitar.Common
             Console.WriteLine($"{player.Name} strums the {Name} guitar!");
         }
     }
-    enum StringType { Steel, Nylon}
+   public enum StringType { Steel, Nylon}
 }

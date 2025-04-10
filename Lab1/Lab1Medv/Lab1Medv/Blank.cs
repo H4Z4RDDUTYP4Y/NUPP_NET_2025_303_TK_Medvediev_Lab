@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Guitar.Common
-{ 
-    public interface IEntity
+{
+    internal class Blank
     {
-        Guid Id { get; set; }
-    }
+        private static void Main(string[] args)
+        {
 
+        }
+    }
 }

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guitar.Common", "Lab1Medv\Guitar.Common.csproj", "{68225D50-F0CD-49D6-A006-77AAC1815728}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guitar.Common", "Lab1Medv\Guitar.Common.csproj", "{68225D50-F0CD-49D6-A006-77AAC1815728}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guitar.Console", "Guitar.Console\Guitar.Console.csproj", "{A366B540-7497-49CA-8BC0-95EC12309659}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{68225D50-F0CD-49D6-A006-77AAC1815728}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68225D50-F0CD-49D6-A006-77AAC1815728}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68225D50-F0CD-49D6-A006-77AAC1815728}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A366B540-7497-49CA-8BC0-95EC12309659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A366B540-7497-49CA-8BC0-95EC12309659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A366B540-7497-49CA-8BC0-95EC12309659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A366B540-7497-49CA-8BC0-95EC12309659}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,8 +13,9 @@ namespace Guitar.Common
         public string Name { get; set; }
         public int StringCount { get; set; }
         public float Price { get; set; }
-        public Guitar(string name, int stringcount, int scalelength, float price)
+        public Guitar(Guid id, string name, int stringcount, int scalelength, float price)
         {
+            Id = id;
             Name = name;
             StringCount = stringcount;
             ScaleLength = scalelength;
