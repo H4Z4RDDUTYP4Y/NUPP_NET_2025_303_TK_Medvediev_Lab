@@ -1,7 +1,5 @@
 ﻿using Guitar.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Guitar.Common.GuitarTypes;
 
 namespace GuitarApp
 {
@@ -62,6 +60,8 @@ namespace GuitarApp
             // Read by ID
             
             Console.WriteLine($"Guitar with ID : {readGuit.Id}- {readGuit.Name}, priced at: {readGuit.Price}, {readGuit.StringCount} strings and {readGuit.ScaleLength} inch scale length");
+
+            guitarService.Save("guitarscrudtest.json");
 
             // Deleting
             guitarService.Remove(electricGuitar);
