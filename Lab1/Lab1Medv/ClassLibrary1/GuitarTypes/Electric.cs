@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Guitar.Common
+namespace Guitar.Common.GuitarTypes
 {
     public class Electric : Guitar
     {
@@ -16,7 +16,7 @@ namespace Guitar.Common
         public VibratoSystem VibratoSystem { get; set; }
         public Electric(Guid Id, string name, int stringcount, int scalelength, float price, int pickupcount, VibratoSystem vibratoSystem) : base(id, name, stringcount, scalelength, price)
         {
-            
+
             PickupCount = pickupcount;
             VibratoSystem = vibratoSystem;
         }
@@ -31,5 +31,5 @@ namespace Guitar.Common
 
     }
     public enum VibratoSystem { None, FloatingBridge, LockedBridge, Bigsby }
-   
+
 }

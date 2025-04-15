@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Guitar.Common
+namespace Guitar.Common.GuitarTypes
 {
     public abstract class Guitar : IEntity
     {

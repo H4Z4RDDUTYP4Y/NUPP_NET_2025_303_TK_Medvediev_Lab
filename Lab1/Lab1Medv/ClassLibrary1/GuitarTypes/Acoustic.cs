@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Guitar.Common
+namespace Guitar.Common.GuitarTypes
 {
     public class Acoustic : Guitar
     {
@@ -16,7 +16,7 @@ namespace Guitar.Common
         public StringType StringType { get; set; }
         public Acoustic(Guid Id, string name, int stringcount, int scalelength, float price, bool haspiezo, StringType stringType) : base(id, name, stringcount, scalelength, price)
         {
-            
+
             HasPiezo = haspiezo;
             StringType = stringType;
         }
@@ -29,5 +29,5 @@ namespace Guitar.Common
             Console.WriteLine($"{player.Name} strums the {Name} guitar!");
         }
     }
-   public enum StringType { Steel, Nylon}
+    public enum StringType { Steel, Nylon }
 }
