@@ -13,6 +13,9 @@ namespace Guitar.Common.Crud
         IEnumerable<T> ReadAll();
         void Update(T element);
         void Remove(T element);
+        Task Save(string filePath);
+        Task Load(string filePath);
     }
+
 }
 
