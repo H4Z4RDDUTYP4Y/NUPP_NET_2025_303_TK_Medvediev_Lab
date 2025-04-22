@@ -1,6 +1,7 @@
 ﻿
 using Guitar.Common;
 using Guitar.Common.Crud;
+using System.Collections;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -74,6 +75,16 @@ public class CrudService<T> : ICrudService<T> where T : class, IEntity
                 _data[kvp.Key] = kvp.Value;
             }
         }
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        throw new NotImplementedException();
     }
 }
 

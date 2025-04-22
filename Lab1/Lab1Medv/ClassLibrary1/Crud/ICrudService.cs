@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Guitar.Common.Crud
 {
-    public interface ICrudService<T>
+    public interface ICrudService<T> : IEnumerable<T>
     {
         void Create(T element);
         T Read(Guid Id);
