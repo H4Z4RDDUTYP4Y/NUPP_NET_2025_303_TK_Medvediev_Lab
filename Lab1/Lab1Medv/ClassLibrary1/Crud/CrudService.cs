@@ -1,9 +1,10 @@
 ﻿
 using Guitar.Common;
 using Guitar.Common.Crud;
+using System.Collections;
 using System.IO;
 using System.Text.Json;
-
+using System.Threading.Tasks;
 public class CrudService<T> : ICrudService<T> where T : class, IEntity
 {
     private readonly Dictionary<Guid, T> _data = new Dictionary<Guid, T>();
@@ -40,7 +41,7 @@ public class CrudService<T> : ICrudService<T> where T : class, IEntity
         _data.Remove(element.Id);
     }
 
-    public void Save(string filePath)
+    public async Task Save(string filePath)
     {
         var options = new JsonSerializerOptions
         {
@@ -50,10 +51,10 @@ public class CrudService<T> : ICrudService<T> where T : class, IEntity
         };
 
         var json = JsonSerializer.Serialize(_data, options);
-        File.WriteAllText(filePath, json);
+        await File.WriteAllTextAsync(filePath, json);
     }
 
-    public void Load(string filePath)
+    public async Task Load(string filePath)
     {
         if (!File.Exists(filePath))
             return;
@@ -64,7 +65,7 @@ public class CrudService<T> : ICrudService<T> where T : class, IEntity
             Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter() }
         };
 
-        var json = File.ReadAllText(filePath);
+        var json = await File.ReadAllTextAsync(filePath);
         var loadedData = JsonSerializer.Deserialize<Dictionary<Guid, T>>(json, options);
         if (loadedData != null)
         {
@@ -74,6 +75,16 @@ public class CrudService<T> : ICrudService<T> where T : class, IEntity
                 _data[kvp.Key] = kvp.Value;
             }
         }
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        throw new NotImplementedException();
     }
 }
 
