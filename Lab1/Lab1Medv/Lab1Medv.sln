@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guitar.Console", "Guitar.Console\Guitar.Console.csproj", "{A366B540-7497-49CA-8BC0-95EC12309659}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guitar.Common", "ClassLibrary1\Guitar.Common.csproj", "{69994F64-7339-4CED-B133-B1BD954556D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guitar.Common", "ClassLibrary1\Guitar.Common.csproj", "{69994F64-7339-4CED-B133-B1BD954556D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guitar.Infrastructure", "Guitar.Infrastructure\Guitar.Infrastructure.csproj", "{797D1C38-17B4-4D64-BEA4-DF25CB0309C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{69994F64-7339-4CED-B133-B1BD954556D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69994F64-7339-4CED-B133-B1BD954556D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69994F64-7339-4CED-B133-B1BD954556D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{797D1C38-17B4-4D64-BEA4-DF25CB0309C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797D1C38-17B4-4D64-BEA4-DF25CB0309C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797D1C38-17B4-4D64-BEA4-DF25CB0309C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{797D1C38-17B4-4D64-BEA4-DF25CB0309C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
