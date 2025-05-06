@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Guitar.Abstractions;
+using Guitar.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,73 +11,46 @@ namespace Guitar.Common.Crud
 {
     public class CrudServiceAsync<T> : ICrudServiceAsync<T> where T : class, IEntity
     {
-        private readonly Dictionary<Guid, T> _data = new();
+        private readonly IRepository<T> _repository;
+        private readonly GuitarContext _context;
 
-        public Task CreateAsync(T element)
+        public CrudServiceAsync(IRepository<T> repository, GuitarContext context)
         {
-            _data[element.Id] = element;
-            return Task.CompletedTask;
+            _repository = repository;
+            _context = context;
         }
 
-        public Task<T?> ReadAsync(Guid id)
+        public async Task<bool> CreateAsync(T element)
         {
-            _data.TryGetValue(id, out T? element);
-            return Task.FromResult(element);
+            await _repository.AddAsync(element);
+            return await SaveAsync();
         }
 
-        public Task<IEnumerable<T>> ReadAllAsync()
+        public async Task<T> ReadAsync(Guid id)
         {
-            return Task.FromResult<IEnumerable<T>>(_data.Values.ToList());
+            return await _repository.GetByIdAsync((int)(object)id); // можливо потрібно привести тип
         }
 
-        public Task UpdateAsync(T element)
+        public async Task<IEnumerable<T>> ReadAllAsync() => await _repository.GetAllAsync();
+
+        public async Task<IEnumerable<T>> ReadAllAsync(int page, int amount)
         {
-            if (_data.ContainsKey(element.Id))
-            {
-                _data[element.Id] = element;
-            }
-            return Task.CompletedTask;
+            return await _repository.GetAllAsync(); // Реалізуй пагінацію за потребою
         }
 
-        public Task RemoveAsync(T element)
+        public async Task<bool> UpdateAsync(T element)
         {
-            _data.Remove(element.Id);
-            return Task.CompletedTask;
+            await _repository.Update(element);
+            return await SaveAsync();
         }
 
-        public async Task SaveAsync(string filePath)
+        public async Task<bool> RemoveAsync(T element)
         {
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                IncludeFields = true,
-                Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter() }
-            };
-
-            var json = JsonSerializer.Serialize(_data, options);
-            await File.WriteAllTextAsync(filePath, json);
+            await _repository.Delete(element);
+            return await SaveAsync();
         }
 
-        public async Task LoadAsync(string filePath)
-        {
-            if (!File.Exists(filePath)) return;
-
-            var options = new JsonSerializerOptions
-            {
-                IncludeFields = true,
-                Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter() }
-            };
-
-            var json = await File.ReadAllTextAsync(filePath);
-            var loaded = JsonSerializer.Deserialize<Dictionary<Guid, T>>(json, options);
-            if (loaded != null)
-            {
-                _data.Clear();
-                foreach (var item in loaded)
-                {
-                    _data[item.Key] = item.Value;
-                }
-            }
-        }
+        public async Task<bool> SaveAsync() => (await _context.SaveChangesAsync()) > 0;
     }
+    
 }
