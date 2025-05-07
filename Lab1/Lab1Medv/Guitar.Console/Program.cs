@@ -1,48 +1,57 @@
-﻿
-// Program.cs in Guitar.Console
-using Guitar.Infrastructure;
-using Guitar.Infrastructure.Models;
-using Guitar.Common;
-using Guitar.Common.Crud;
-using Microsoft.EntityFrameworkCore;
+﻿using Guitar.Infrastructure.Models;
+using Guitar.NoSql;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 
+// Register a global serializer for Guids with Standard representation
+BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
 var builder = Host.CreateApplicationBuilder(args);
 
-// Load configuration from appsettings.json
+// Load configuration
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
-// Configure SQLite DB Context
-builder.Services.AddDbContext<GuitarContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Register MongoDB client and database
+builder.Services.AddSingleton<IMongoClient>(sp =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    return new MongoClient(config.GetConnectionString("MongoDb"));
+});
 
-// Register Repository and CRUD Services
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped(typeof(ICrudServiceAsync<>), typeof(CrudServiceAsync<>));
+builder.Services.AddScoped(sp =>
+{
+    var client = sp.GetRequiredService<IMongoClient>();
+    var config = sp.GetRequiredService<IConfiguration>();
+    return client.GetDatabase(config["MongoSettings:Database"]);
+});
+
+// Register MongoDB repository
+builder.Services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var serviceProvider = scope.ServiceProvider;
+    var services = scope.ServiceProvider;
 
-    // Create player first
-    var playerService = serviceProvider.GetRequiredService<ICrudServiceAsync<PlayerModel>>();
-    var player = new PlayerModel()
+    // Create player
+    var playerRepo = services.GetRequiredService<IMongoRepository<PlayerModel>>();
+    var player = new PlayerModel
     {
         Id = Guid.NewGuid(),
         Name = "John Mayer",
         Age = 45,
         YearsExperience = 30
     };
-    await playerService.CreateAsync(player);
-    await playerService.SaveAsync();
+    await playerRepo.CreateAsync(player);
 
-    // Then create guitar referencing that player
-    var guitarService = serviceProvider.GetRequiredService<ICrudServiceAsync<ElectricModel>>();
-    var newGuitar = new ElectricModel
+    // Create guitar
+    var guitarRepo = services.GetRequiredService<IMongoRepository<ElectricModel>>();
+    var guitar = new ElectricModel
     {
         Id = Guid.NewGuid(),
         Name = "Fender Stratocaster",
@@ -53,18 +62,93 @@ using (var scope = app.Services.CreateScope())
         VibratoSystem = VibratoSystem.FloatingBridge,
         PlayerId = player.Id
     };
-    await guitarService.CreateAsync(newGuitar);
-    await guitarService.SaveAsync();
+    await guitarRepo.CreateAsync(guitar);
 
-    // Print out all guitars
-    var guitars = await guitarService.ReadAllAsync();
-    foreach (var guitar in guitars)
+    // Read all guitars
+    var guitars = await guitarRepo.ReadAllAsync();
+    foreach (var g in guitars)
     {
-        Console.WriteLine($"{guitar.Name} - {guitar.Price} USD");
+        Console.WriteLine($"{g.Name} - {g.Price} USD");
     }
 }
 
 await app.RunAsync();
+
+
+
+//// Program.cs in Guitar.Console
+//using Guitar.Infrastructure;
+//using Guitar.Infrastructure.Models;
+//using Guitar.Common;
+//using Guitar.Common.Crud;
+//using Microsoft.EntityFrameworkCore;
+//using Microsoft.Extensions.Configuration;
+//using Microsoft.Extensions.DependencyInjection;
+//using Microsoft.Extensions.Hosting;
+
+//var builder = Host.CreateApplicationBuilder(args);
+
+//// Load configuration from appsettings.json
+//builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+//// Configure SQLite DB Context
+//builder.Services.AddDbContext<GuitarContext>(options =>
+//    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//// Register Repository and CRUD Services
+//builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+//builder.Services.AddScoped(typeof(ICrudServiceAsync<>), typeof(CrudServiceAsync<>));
+
+//var app = builder.Build();
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var serviceProvider = scope.ServiceProvider;
+
+//    // Create player first
+//    var playerService = serviceProvider.GetRequiredService<ICrudServiceAsync<PlayerModel>>();
+//    var player = new PlayerModel()
+//    {
+//        Id = Guid.NewGuid(),
+//        Name = "John Mayer",
+//        Age = 45,
+//        YearsExperience = 30
+//    };
+//    await playerService.CreateAsync(player);
+//    await playerService.SaveAsync();
+
+//    // Then create guitar referencing that player
+//    var guitarService = serviceProvider.GetRequiredService<ICrudServiceAsync<ElectricModel>>();
+//    var newGuitar = new ElectricModel
+//    {
+//        Id = Guid.NewGuid(),
+//        Name = "Fender Stratocaster",
+//        StringCount = 6,
+//        ScaleLength = 25,
+//        Price = 999.99f,
+//        PickupCount = 3,
+//        VibratoSystem = VibratoSystem.FloatingBridge,
+//        PlayerId = player.Id
+//    };
+//    await guitarService.CreateAsync(newGuitar);
+//    await guitarService.SaveAsync();
+
+//    // Print out all guitars
+//    var guitars = await guitarService.ReadAllAsync();
+//    foreach (var guitar in guitars)
+//    {
+//        Console.WriteLine($"{guitar.Name} - {guitar.Price} USD");
+//    }
+//}
+
+//await app.RunAsync();
+
+
+
+
+
+
+
 
 //public class Program
 //{

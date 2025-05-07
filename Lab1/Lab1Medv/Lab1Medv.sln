@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guitar.Common", "ClassLibra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guitar.Infrastructure", "Guitar.Infrastructure\Guitar.Infrastructure.csproj", "{797D1C38-17B4-4D64-BEA4-DF25CB0309C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guitar.Abstractions", "Guitar.Abstractions\Guitar.Abstractions.csproj", "{643D84B1-A006-4496-B492-2C43E40295DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guitar.Abstractions", "Guitar.Abstractions\Guitar.Abstractions.csproj", "{643D84B1-A006-4496-B492-2C43E40295DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guitar.NoSql", "Guitar.NoSql\Guitar.NoSql.csproj", "{FAF6DB4B-0EC8-446A-A566-6E3424351DE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{643D84B1-A006-4496-B492-2C43E40295DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{643D84B1-A006-4496-B492-2C43E40295DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{643D84B1-A006-4496-B492-2C43E40295DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF6DB4B-0EC8-446A-A566-6E3424351DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF6DB4B-0EC8-446A-A566-6E3424351DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF6DB4B-0EC8-446A-A566-6E3424351DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF6DB4B-0EC8-446A-A566-6E3424351DE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,6 +22,7 @@
     <ProjectReference Include="..\ClassLibrary1\Guitar.Common.csproj" />
 	  <ProjectReference Include="..\Guitar.Infrastructure\Guitar.Infrastructure.csproj" />
 	  <ProjectReference Include="..\Guitar.Abstractions\Guitar.Abstractions.csproj" />
+	  <ProjectReference Include="..\Guitar.NoSql\Guitar.NoSql.csproj" />
   </ItemGroup>
 
 </Project>
