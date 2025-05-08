@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guitar.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,12 @@ namespace Guitar.Common.Crud
 {
     public interface ICrudServiceAsync<T> where T : class, IEntity
     {
-        Task CreateAsync(T element);
+        Task<bool> CreateAsync(T element);
         Task<T?> ReadAsync(Guid id);
         Task<IEnumerable<T>> ReadAllAsync();
-        Task UpdateAsync(T element);
-        Task RemoveAsync(T element);
-        Task SaveAsync(string filePath);
-        Task LoadAsync(string filePath);
+        Task<IEnumerable<T>> ReadAllAsync(int page, int amount); // Optional: pagination
+        Task<bool> UpdateAsync(T element);
+        Task<bool> RemoveAsync(T element);
+        Task<bool> SaveAsync();
     }
 }

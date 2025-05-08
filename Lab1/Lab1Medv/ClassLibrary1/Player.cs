@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guitar.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Guitar.Common
 {
-    public class Player
+    public class Player : IEntity
     {
         public Guid Id { get; set; }
         public int Age { get; set; }
