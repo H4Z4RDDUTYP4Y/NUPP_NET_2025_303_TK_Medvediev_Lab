@@ -8,6 +8,7 @@ namespace Guitar.Infrastructure.Models
 {
     public class AcousticModel : GuitarModel
     {
+
         public bool HasPiezo { get; set; }
         public StringType StringType { get; set; }
     }

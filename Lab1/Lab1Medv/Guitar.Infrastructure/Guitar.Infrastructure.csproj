@@ -14,7 +14,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="MongoDB.Bson" Version="3.4.0" />
 	  <ProjectReference Include="..\Guitar.Abstractions\Guitar.Abstractions.csproj" />
+	 
   </ItemGroup>
 
 </Project>
