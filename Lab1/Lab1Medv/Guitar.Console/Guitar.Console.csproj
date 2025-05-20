@@ -13,6 +13,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.4" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.4" />
+    <PackageReference Include="Microsoft.Graph" Version="5.78.0" />
+    <PackageReference Include="MongoDB.Bson" Version="3.4.0" />
+    <PackageReference Include="MongoDB.Driver" Version="3.4.0" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.30.0" />
   </ItemGroup>
 
   <ItemGroup>

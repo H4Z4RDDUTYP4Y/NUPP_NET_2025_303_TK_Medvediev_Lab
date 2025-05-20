@@ -1,0 +1,6 @@
+@Guitar.REST_HostAddress = http://localhost:5014
+
+GET {{Guitar.REST_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

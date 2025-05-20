@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Guitar.Infrastructure.Models.GuitarModel>
+
+<h1>Гітари з бази даних</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Назва</th>
+            <th>Тип</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var guitar in Model)
+        {
+            <tr>
+                <td>@guitar.Id</td>
+                <td>@guitar.Name</td>
+                <td>@guitar.GetType().Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

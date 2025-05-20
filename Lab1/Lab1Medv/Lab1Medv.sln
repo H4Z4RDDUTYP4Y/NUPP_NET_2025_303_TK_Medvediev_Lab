@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guitar.Infrastructure", "Gu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guitar.Abstractions", "Guitar.Abstractions\Guitar.Abstractions.csproj", "{643D84B1-A006-4496-B492-2C43E40295DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guitar.NoSql", "Guitar.NoSql\Guitar.NoSql.csproj", "{FAF6DB4B-0EC8-446A-A566-6E3424351DE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guitar.NoSql", "Guitar.NoSql\Guitar.NoSql.csproj", "{FAF6DB4B-0EC8-446A-A566-6E3424351DE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guitar.REST", "Guitar.REST\Guitar.REST.csproj", "{7E50E083-AABA-47DA-9044-CEF9FA1027B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guitar.MVC", "Guitar.MVC\Guitar.MVC.csproj", "{B71BFEC6-8F96-4A36-8B66-196D4E55378F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{FAF6DB4B-0EC8-446A-A566-6E3424351DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAF6DB4B-0EC8-446A-A566-6E3424351DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAF6DB4B-0EC8-446A-A566-6E3424351DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E50E083-AABA-47DA-9044-CEF9FA1027B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E50E083-AABA-47DA-9044-CEF9FA1027B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E50E083-AABA-47DA-9044-CEF9FA1027B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E50E083-AABA-47DA-9044-CEF9FA1027B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B71BFEC6-8F96-4A36-8B66-196D4E55378F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B71BFEC6-8F96-4A36-8B66-196D4E55378F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B71BFEC6-8F96-4A36-8B66-196D4E55378F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B71BFEC6-8F96-4A36-8B66-196D4E55378F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
