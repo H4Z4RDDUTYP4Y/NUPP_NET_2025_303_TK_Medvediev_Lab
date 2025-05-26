@@ -1,4 +1,6 @@
 ﻿using Guitar.Abstractions;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,8 @@ namespace Guitar.Infrastructure.Models
 {
     public class PlayerModel : IEntity
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.String)]
         public Guid Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }

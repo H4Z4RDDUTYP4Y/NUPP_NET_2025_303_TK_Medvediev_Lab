@@ -1,25 +1,24 @@
 ﻿using Guitar.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Guitar.Infrastructure
 {
     public class GuitarContext : DbContext
     {
-        public GuitarContext(DbContextOptions<GuitarContext> options) : base(options) { }
+        public GuitarContext(DbContextOptions<GuitarContext> options)
+            : base(options)
+        {
+        }
 
-        public DbSet<GuitarModel> Guitars => Set<GuitarModel>();
-        public DbSet<ElectricModel> Electrics => Set<ElectricModel>();
-        public DbSet<AcousticModel> Acoustics => Set<AcousticModel>();
-        public DbSet<PlayerModel> Players => Set<PlayerModel>();
+        // DbSet для кожної моделі
+        public DbSet<GuitarModel> Guitars { get; set; }
+        public DbSet<ElectricModel> Electrics { get; set; }
+        public DbSet<AcousticModel> Acoustics { get; set; }
+        public DbSet<PlayerModel> Players { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Наслідування через Discriminator
             modelBuilder.Entity<GuitarModel>()
                         .HasDiscriminator<string>("GuitarType")
                         .HasValue<ElectricModel>("Electric")
