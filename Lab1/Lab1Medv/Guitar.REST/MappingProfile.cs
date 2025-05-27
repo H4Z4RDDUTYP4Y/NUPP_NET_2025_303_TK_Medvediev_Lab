@@ -5,7 +5,7 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<ElectricGuitarDto, ElectricModel>().ReverseMap();
+        CreateMap<ElectricModel, ElectricGuitarDto>().ReverseMap();
         CreateMap<AcousticGuitarDto, AcousticModel>().ReverseMap();
     }
 }
