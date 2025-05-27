@@ -14,7 +14,7 @@ namespace Guitar.Common.Crud
         Task<IEnumerable<T>> ReadAllAsync();
         Task<IEnumerable<T>> ReadAllAsync(int page, int amount); // Optional: pagination
         Task<bool> UpdateAsync(T element);
-        Task<bool> RemoveAsync(T element);
+        Task<bool> DeleteAsync(Guid id);
         Task<bool> SaveAsync();
     }
 }
