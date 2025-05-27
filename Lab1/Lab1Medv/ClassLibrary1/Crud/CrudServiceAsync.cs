@@ -1,5 +1,6 @@
 ﻿using Guitar.Abstractions;
 using Guitar.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,11 +44,13 @@ namespace Guitar.Common.Crud
             await _repository.Update(element);
             return await SaveAsync();
         }
-
-        public async Task<bool> RemoveAsync(T element)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            await _repository.Delete(element);
-            return await SaveAsync();
+            var entity = await _repository.GetByIdAsync((int)(object)id);
+            if (entity == null) return false;
+
+            _repository.Delete(entity);
+            return true;
         }
 
         public async Task<bool> SaveAsync() => (await _context.SaveChangesAsync()) > 0;
