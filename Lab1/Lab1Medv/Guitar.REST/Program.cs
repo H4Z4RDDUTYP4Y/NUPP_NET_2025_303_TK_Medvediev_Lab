@@ -5,6 +5,7 @@ using Guitar.Infrastructure.Models;
 using Guitar.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -15,11 +16,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<GuitarContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        b => b.MigrationsAssembly("Guitar.REST") // <-- Add this line
-    )
-);
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+    var conn = new SqlConnection(connectionString)
+    {
+        AccessToken = new Azure.Identity.DefaultAzureCredential().GetToken(
+            new Azure.Core.TokenRequestContext(new[] { "https://database.windows.net/.default" })
+        ).Token
+    };
+
+    options.UseSqlServer(conn);
+});
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<GuitarContext>()
